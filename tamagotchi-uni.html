@@ -33,30 +33,46 @@
             overflow: hidden;
         }
         
+        /* 复刻经典拓麻歌子设备外观 */
         .tamagotchi-device {
             background: #34495e;
             border-radius: 15px;
             padding: 20px;
             margin-bottom: 20px;
             position: relative;
+            border: 3px solid #1a1a1a;
         }
         
+        /* 经典圆形屏幕 */
         .screen-container {
-            background: #ecf0f1;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px 0;
+            background: #000;
+            border-radius: 50%;
+            width: 200px;
             height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0 auto 15px;
             position: relative;
             overflow: hidden;
+            border: 2px solid #fff;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
         }
         
+        /* 像素风格宠物显示 */
         .pet-display {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             font-size: 80px;
-            transition: all 0.3s ease;
+            color: #0f0;
+            text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
+            filter: drop-shadow(0 0 5px #0f0);
+        }
+        
+        /* 像素化效果 */
+        .pixel-art {
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
         }
         
         .stats-container {
@@ -68,16 +84,19 @@
         
         .stat-item {
             background: #2c3e50;
-            color: white;
+            color: #0f0;
             padding: 10px;
             border-radius: 8px;
             font-size: 12px;
+            border: 1px solid #0f0;
+            text-shadow: 0 0 5px #0f0;
         }
         
         .stat-value {
             font-size: 16px;
             font-weight: bold;
             margin-top: 5px;
+            color: #fff;
         }
         
         .buttons-container {
@@ -100,11 +119,13 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            border: 2px solid #2980b9;
         }
         
         .button:hover {
             background: #2980b9;
             transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
         
         .button:active {
@@ -121,32 +142,35 @@
             font-size: 14px;
             margin-top: 10px;
             font-weight: bold;
+            text-shadow: 0 0 5px #f1c40f;
         }
         
         .message-display {
-            background: rgba(0,0,0,0.1);
-            color: #2c3e50;
+            background: rgba(0,0,0,0.3);
+            color: #0f0;
             padding: 8px;
             border-radius: 5px;
             font-size: 14px;
             margin-top: 10px;
             min-height: 20px;
+            border: 1px solid #0f0;
+            text-shadow: 0 0 3px #0f0;
         }
         
         /* 动画效果 */
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+            50% { transform: translate(-50%, -50%) translateY(-10px); }
         }
         
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
         
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            0%, 100% { opacity: 1; text-shadow: 0 0 10px #0f0; }
+            50% { opacity: 0.7; text-shadow: 0 0 5px #0f0; }
         }
         
         .happy {
@@ -161,6 +185,16 @@
             animation: pulse 2s infinite;
         }
         
+        /* 拓麻歌子经典像素字符 */
+        .tamagotchi-pixel {
+            font-family: 'Courier New', monospace;
+            font-size: 120px;
+            line-height: 1;
+            letter-spacing: -5px;
+            color: #0f0;
+            text-shadow: 0 0 10px #0f0;
+        }
+        
         /* 响应式设计 */
         @media (max-width: 480px) {
             .tamagotchi-container {
@@ -168,11 +202,13 @@
             }
             
             .screen-container {
+                width: 180px;
                 height: 180px;
             }
             
-            .pet-display {
-                font-size: 60px;
+            .tamagotchi-pixel {
+                font-size: 100px;
+                letter-spacing: -4px;
             }
             
             .button {
@@ -180,15 +216,40 @@
                 font-size: 12px;
             }
         }
+        
+        /* 设备按钮样式 */
+        .device-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .device-button {
+            width: 30px;
+            height: 30px;
+            background: #e74c3c;
+            border-radius: 50%;
+            border: 2px solid #c0392b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .device-button:hover {
+            background: #c0392b;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
     <div class="tamagotchi-container">
-        <h2 style="color: white; margin-bottom: 20px;">🥚 拓麻歌子 Uni</h2>
+        <h2 style="color: #0f0; margin-bottom: 20px; text-shadow: 0 0 10px #0f0;">🥚 拓麻歌子 Uni</h2>
         
         <div class="tamagotchi-device">
             <div class="screen-container">
-                <div class="pet-display" id="petDisplay">🐣</div>
+                <div class="pet-display" id="petDisplay">
+                    <div class="tamagotchi-pixel" id="pixelPet">●</div>
+                </div>
             </div>
             
             <div class="message-display" id="messageDisplay">欢迎来到拓麻歌子世界！</div>
@@ -212,6 +273,13 @@
                     🧼 清洁
                     <div class="stat-value" id="cleanlinessValue">100%</div>
                 </div>
+            </div>
+            
+            <!-- 模拟设备按钮 -->
+            <div class="device-buttons">
+                <div class="device-button" onclick="checkStatus()" title="A按钮"></div>
+                <div class="device-button" onclick="feedPet()" title="B按钮"></div>
+                <div class="device-button" onclick="playWithPet()" title="C按钮"></div>
             </div>
         </div>
         
@@ -258,21 +326,22 @@
             lastCleaned: Date.now()
         };
         
-        const petDisplay = document.getElementById('petDisplay');
+        const pixelPet = document.getElementById('pixelPet');
         const messageDisplay = document.getElementById('messageDisplay');
         const ageDisplay = document.getElementById('ageDisplay');
         
-        // 宠物表情映射
-        const petEmojis = {
-            egg: '🥚',
-            baby: '🐣',
-            child: '🐥',
-            teen: '🐔',
-            adult: '🐓',
-            sick: '🤒',
-            sleeping: '😴',
-            happy: '😊',
-            sad: '😢'
+        // 拓麻歌子经典像素字符映射（使用Unicode块字符）
+        const tamagotchiChars = {
+            egg: '●',           // 实心圆 - 蛋
+            baby: '☻',          // 微笑脸 - 婴儿
+            child: '☺',         // 笑脸 - 幼年
+            teen: '😐',         // 无表情 - 青少年
+            adult: '😊',        // 开心脸 - 成年
+            sick: '🤒',         // 生病
+            sleeping: '😴',     // 睡觉
+            happy: '😄',        // 非常开心
+            sad: '😢',          // 伤心
+            dead: '💀'          // 死亡
         };
         
         // 更新显示
@@ -285,25 +354,25 @@
             document.getElementById('ageDisplay').textContent = `年龄: ${pet.age} 天`;
             
             // 更新宠物表情
-            let emoji = petEmojis.adult;
-            if (pet.age === 0) emoji = petEmojis.egg;
-            else if (pet.age <= 2) emoji = petEmojis.baby;
-            else if (pet.age <= 5) emoji = petEmojis.child;
-            else if (pet.age <= 10) emoji = petEmojis.teen;
+            let char = tamagotchiChars.adult;
+            if (pet.age === 0) char = tamagotchiChars.egg;
+            else if (pet.age <= 2) char = tamagotchiChars.baby;
+            else if (pet.age <= 5) char = tamagotchiChars.child;
+            else if (pet.age <= 10) char = tamagotchiChars.teen;
             
-            if (pet.isSick) emoji = petEmojis.sick;
-            else if (pet.isSleeping) emoji = petEmojis.sleeping;
-            else if (pet.happiness > 80) emoji = petEmojis.happy;
-            else if (pet.happiness < 30) emoji = petEmojis.sad;
+            if (pet.isSick) char = tamagotchiChars.sick;
+            else if (pet.isSleeping) char = tamagotchiChars.sleeping;
+            else if (pet.happiness > 80) char = tamagotchiChars.happy;
+            else if (pet.happiness < 30) char = tamagotchiChars.sad;
             
-            petDisplay.textContent = emoji;
-            petDisplay.className = 'pet-display';
+            pixelPet.textContent = char;
+            pixelPet.className = 'tamagotchi-pixel';
             
             // 添加动画效果
             if (pet.happiness > 80 && !pet.isSleeping && !pet.isSick) {
-                petDisplay.classList.add('happy');
+                pixelPet.classList.add('happy');
             } else if (pet.isSleeping) {
-                petDisplay.classList.add('sleeping');
+                pixelPet.classList.add('sleeping');
             }
         }
         
@@ -456,7 +525,7 @@
             
             // 检查死亡条件
             if (pet.hunger <= 0 || pet.happiness <= 0) {
-                petDisplay.textContent = '💀';
+                pixelPet.textContent = tamagotchiChars.dead;
                 showMessage('💔 宠物去世了... 刷新页面重新开始吧');
                 clearInterval(this);
             }
