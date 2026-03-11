@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拓麻歌子 Uni 🥚</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .tamagotchi-container {
+            background: #2c3e50;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tamagotchi-device {
+            background: #34495e;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .screen-container {
+            background: #ecf0f1;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pet-display {
+            font-size: 80px;
+            transition: all 0.3s ease;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .stat-item {
+            background: #2c3e50;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+        
+        .stat-value {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .buttons-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .button:active {
+            transform: translateY(0);
+        }
+        
+        .button-icon {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .age-display {
+            color: #f1c40f;
+            font-size: 14px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        .message-display {
+            background: rgba(0,0,0,0.1);
+            color: #2c3e50;
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-top: 10px;
+            min-height: 20px;
+        }
+        
+        /* 动画效果 */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .happy {
+            animation: bounce 0.5s ease;
+        }
+        
+        .excited {
+            animation: spin 1s ease-in-out;
+        }
+        
+        .sleeping {
+            animation: pulse 2s infinite;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 480px) {
+            .tamagotchi-container {
+                padding: 20px;
+            }
+            
+            .screen-container {
+                height: 180px;
+            }
+            
+            .pet-display {
+                font-size: 60px;
+            }
+            
+            .button {
+                padding: 10px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tamagotchi-container">
+        <h2 style="color: white; margin-bottom: 20px;">🥚 拓麻歌子 Uni</h2>
+        
+        <div class="tamagotchi-device">
+            <div class="screen-container">
+                <div class="pet-display" id="petDisplay">🐣</div>
+            </div>
+            
+            <div class="message-display" id="messageDisplay">欢迎来到拓麻歌子世界！</div>
+            
+            <div class="age-display" id="ageDisplay">年龄: 0 天</div>
+            
+            <div class="stats-container">
+                <div class="stat-item">
+                    ❤️ 饥饿
+                    <div class="stat-value" id="hungerValue">100%</div>
+                </div>
+                <div class="stat-item">
+                    😊 快乐
+                    <div class="stat-value" id="happinessValue">100%</div>
+                </div>
+                <div class="stat-item">
+                    💤 疲劳
+                    <div class="stat-value" id="tirednessValue">0%</div>
+                </div>
+                <div class="stat-item">
+                    🧼 清洁
+                    <div class="stat-value" id="cleanlinessValue">100%</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="buttons-container">
+            <button class="button" onclick="feedPet()">
+                <div class="button-icon">🍽️</div>
+                喂食
+            </button>
+            <button class="button" onclick="playWithPet()">
+                <div class="button-icon">🎮</div>
+                玩耍
+            </button>
+            <button class="button" onclick="cleanPet()">
+                <div class="button-icon">🚿</div>
+                清洁
+            </button>
+            <button class="button" onclick="putToSleep()">
+                <div class="button-icon">😴</div>
+                睡觉
+            </button>
+            <button class="button" onclick="giveMedicine()">
+                <div class="button-icon">💊</div>
+                药品
+            </button>
+            <button class="button" onclick="checkStatus()">
+                <div class="button-icon">📊</div>
+                状态
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 宠物状态
+        let pet = {
+            hunger: 100,
+            happiness: 100,
+            tiredness: 0,
+            cleanliness: 100,
+            age: 0,
+            isSleeping: false,
+            isSick: false,
+            lastFed: Date.now(),
+            lastPlayed: Date.now(),
+            lastCleaned: Date.now()
+        };
+        
+        const petDisplay = document.getElementById('petDisplay');
+        const messageDisplay = document.getElementById('messageDisplay');
+        const ageDisplay = document.getElementById('ageDisplay');
+        
+        // 宠物表情映射
+        const petEmojis = {
+            egg: '🥚',
+            baby: '🐣',
+            child: '🐥',
+            teen: '🐔',
+            adult: '🐓',
+            sick: '🤒',
+            sleeping: '😴',
+            happy: '😊',
+            sad: '😢'
+        };
+        
+        // 更新显示
+        function updateDisplay() {
+            // 更新数值显示
+            document.getElementById('hungerValue').textContent = Math.round(pet.hunger) + '%';
+            document.getElementById('happinessValue').textContent = Math.round(pet.happiness) + '%';
+            document.getElementById('tirednessValue').textContent = Math.round(pet.tiredness) + '%';
+            document.getElementById('cleanlinessValue').textContent = Math.round(pet.cleanliness) + '%';
+            document.getElementById('ageDisplay').textContent = `年龄: ${pet.age} 天`;
+            
+            // 更新宠物表情
+            let emoji = petEmojis.adult;
+            if (pet.age === 0) emoji = petEmojis.egg;
+            else if (pet.age <= 2) emoji = petEmojis.baby;
+            else if (pet.age <= 5) emoji = petEmojis.child;
+            else if (pet.age <= 10) emoji = petEmojis.teen;
+            
+            if (pet.isSick) emoji = petEmojis.sick;
+            else if (pet.isSleeping) emoji = petEmojis.sleeping;
+            else if (pet.happiness > 80) emoji = petEmojis.happy;
+            else if (pet.happiness < 30) emoji = petEmojis.sad;
+            
+            petDisplay.textContent = emoji;
+            petDisplay.className = 'pet-display';
+            
+            // 添加动画效果
+            if (pet.happiness > 80 && !pet.isSleeping && !pet.isSick) {
+                petDisplay.classList.add('happy');
+            } else if (pet.isSleeping) {
+                petDisplay.classList.add('sleeping');
+            }
+        }
+        
+        // 显示消息
+        function showMessage(message) {
+            messageDisplay.textContent = message;
+            setTimeout(() => {
+                if (messageDisplay.textContent === message) {
+                    messageDisplay.textContent = '';
+                }
+            }, 3000);
+        }
+        
+        // 喂食
+        function feedPet() {
+            if (pet.isSleeping) {
+                showMessage('😴 它在睡觉呢！');
+                return;
+            }
+            
+            if (pet.hunger >= 100) {
+                showMessage('🍗 已经吃饱啦！');
+                return;
+            }
+            
+            pet.hunger = Math.min(100, pet.hunger + 25);
+            pet.happiness = Math.min(100, pet.happiness + 10);
+            pet.cleanliness = Math.max(0, pet.cleanliness - 10);
+            pet.lastFed = Date.now();
+            
+            showMessage('🍽️ 吃得好开心！');
+            updateDisplay();
+        }
+        
+        // 玩耍
+        function playWithPet() {
+            if (pet.isSleeping) {
+                showMessage('😴 它在睡觉呢！');
+                return;
+            }
+            
+            if (pet.happiness >= 100) {
+                showMessage('🎉 已经很开心啦！');
+                return;
+            }
+            
+            pet.happiness = Math.min(100, pet.happiness + 20);
+            pet.hunger = Math.max(0, pet.hunger - 15);
+            pet.tiredness = Math.min(100, pet.tiredness + 15);
+            pet.lastPlayed = Date.now();
+            
+            showMessage('🎮 玩得好开心！');
+            updateDisplay();
+        }
+        
+        // 清洁
+        function cleanPet() {
+            if (pet.isSleeping) {
+                showMessage('😴 它在睡觉呢！');
+                return;
+            }
+            
+            if (pet.cleanliness >= 100) {
+                showMessage('✨ 已经很干净啦！');
+                return;
+            }
+            
+            pet.cleanliness = Math.min(100, pet.cleanliness + 30);
+            pet.happiness = Math.max(0, pet.happiness - 5);
+            pet.lastCleaned = Date.now();
+            
+            showMessage('🚿 变得干干净净！');
+            updateDisplay();
+        }
+        
+        // 睡觉
+        function putToSleep() {
+            if (pet.tiredness <= 20) {
+                showMessage('😴 还不困呢！');
+                return;
+            }
+            
+            pet.isSleeping = true;
+            showMessage('💤 开始睡觉了...');
+            updateDisplay();
+            
+            // 模拟睡眠时间
+            setTimeout(() => {
+                pet.isSleeping = false;
+                pet.tiredness = Math.max(0, pet.tiredness - 50);
+                pet.hunger = Math.max(0, pet.hunger - 20);
+                showMessage('🌞 醒来啦！');
+                updateDisplay();
+            }, 5000); // 5秒模拟睡眠
+        }
+        
+        // 给药
+        function giveMedicine() {
+            if (!pet.isSick) {
+                showMessage('💊 没有生病，不需要吃药！');
+                return;
+            }
+            
+            pet.isSick = false;
+            pet.happiness = Math.min(100, pet.happiness + 10);
+            showMessage('🏥 病好啦！');
+            updateDisplay();
+        }
+        
+        // 检查状态
+        function checkStatus() {
+            let status = '';
+            if (pet.hunger < 30) status += '⚠️ 饿了 ';
+            if (pet.happiness < 30) status += '😢 不开心 ';
+            if (pet.tiredness > 70) status += '😴 很累 ';
+            if (pet.cleanliness < 30) status += '💩 脏了 ';
+            if (pet.isSick) status += '🤒 生病了 ';
+            
+            if (status === '') {
+                showMessage('✅ 一切正常！');
+            } else {
+                showMessage(status);
+            }
+        }
+        
+        // 自然衰减和成长
+        setInterval(() => {
+            if (pet.isSleeping) return;
+            
+            // 自然衰减
+            pet.hunger = Math.max(0, pet.hunger - 0.5);
+            pet.happiness = Math.max(0, pet.happiness - 0.3);
+            pet.tiredness = Math.min(100, pet.tiredness + 0.4);
+            pet.cleanliness = Math.max(0, pet.cleanliness - 0.2);
+            
+            // 随机生病
+            if (!pet.isSick && Math.random() < 0.001) {
+                pet.isSick = true;
+                showMessage('🤒 生病了！快给它吃药！');
+            }
+            
+            // 年龄增长（每30秒增加1天）
+            if (Date.now() - pet.lastFed > 30000) {
+                pet.age++;
+                pet.lastFed = Date.now();
+                showMessage(`🎂 宠物长大啦！现在${pet.age}天了`);
+            }
+            
+            updateDisplay();
+            
+            // 检查死亡条件
+            if (pet.hunger <= 0 || pet.happiness <= 0) {
+                petDisplay.textContent = '💀';
+                showMessage('💔 宠物去世了... 刷新页面重新开始吧');
+                clearInterval(this);
+            }
+        }, 2000);
+        
+        // 初始化
+        updateDisplay();
+        
+        // 键盘快捷键支持
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'f' || e.key === 'F') feedPet();
+            if (e.key === 'p' || e.key === 'P') playWithPet();
+            if (e.key === 'c' || e.key === 'C') cleanPet();
+            if (e.key === 's' || e.key === 'S') putToSleep();
+            if (e.key === 'm' || e.key === 'M') giveMedicine();
+            if (e.key === 'i' || e.key === 'I') checkStatus();
+        });
+    </script>
+</body>
+</html>

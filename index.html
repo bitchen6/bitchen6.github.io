@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电子宠物集合 🐕🥚</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+        
+        .pets-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .pet-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid #e9ecef;
+        }
+        
+        .pet-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border-color: #3498db;
+        }
+        
+        .pet-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        
+        .pet-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .pet-desc {
+            color: #6c757d;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #6c757d;
+            font-size: 12px;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            .pet-icon {
+                font-size: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 电子宠物集合</h1>
+        
+        <div class="pets-grid">
+            <a href="beagle-pet.html" style="text-decoration: none; color: inherit;">
+                <div class="pet-card">
+                    <div class="pet-icon">🐕</div>
+                    <div class="pet-title">比格犬电子宠物</div>
+                    <div class="pet-desc">喂养、玩耍、摸摸、表演 - 可爱的比格犬陪伴你！</div>
+                </div>
+            </a>
+            
+            <a href="tamagotchi-uni.html" style="text-decoration: none; color: inherit;">
+                <div class="pet-card">
+                    <div class="pet-icon">🥚</div>
+                    <div class="pet-title">拓麻歌子 Uni</div>
+                    <div class="pet-desc">经典复刻版 - 喂食、清洁、睡觉、药品，完整生命周期体验！</div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="footer">
+            📱 手机和电脑都能完美运行 | 🔄 刷新页面重新开始游戏
+        </div>
+    </div>
+</body>
+</html>
