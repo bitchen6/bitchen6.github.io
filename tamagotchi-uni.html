@@ -12,302 +12,221 @@
         }
         
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: 'Courier New', monospace;
+            background: #2c3e50;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            color: #ecf0f1;
         }
         
-        .tamagotchi-container {
-            background: #2c3e50;
-            border-radius: 20px;
+        .tamagotchi-device {
+            background: #34495e;
+            border-radius: 25px;
             padding: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             text-align: center;
             max-width: 400px;
             width: 90%;
             position: relative;
-            overflow: hidden;
+            border: 8px solid #2c3e50;
         }
         
-        /* 复刻经典拓麻歌子设备外观 */
-        .tamagotchi-device {
-            background: #34495e;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            position: relative;
-            border: 3px solid #1a1a1a;
+        .device-header {
+            background: #2c3e50;
+            padding: 10px;
+            border-radius: 15px 15px 0 0;
+            margin: -30px -30px 20px -30px;
+            font-weight: bold;
+            font-size: 18px;
         }
         
-        /* 经典圆形屏幕 */
         .screen-container {
             background: #000;
-            border-radius: 50%;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 15px;
+            border: 4px solid #7f8c8d;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px 0;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             position: relative;
             overflow: hidden;
-            border: 2px solid #fff;
             box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
         }
         
-        /* 像素风格宠物显示 */
+        .screen-content {
+            color: #2ecc71;
+            text-shadow: 0 0 5px #2ecc71;
+            font-size: 16px;
+            line-height: 1.4;
+            text-align: center;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
         .pet-display {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 80px;
-            color: #0f0;
-            text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
-            filter: drop-shadow(0 0 5px #0f0);
+            font-size: 60px;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 5px #2ecc71);
         }
         
-        /* 像素化效果 */
-        .pixel-art {
-            image-rendering: pixelated;
-            image-rendering: -moz-crisp-edges;
-            image-rendering: crisp-edges;
-        }
-        
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin: 15px 0;
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 12px;
         }
         
         .stat-item {
-            background: #2c3e50;
-            color: #0f0;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 12px;
-            border: 1px solid #0f0;
-            text-shadow: 0 0 5px #0f0;
+            background: rgba(0,0,0,0.5);
+            padding: 5px;
+            border-radius: 5px;
+            min-width: 60px;
         }
         
-        .stat-value {
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 5px;
-            color: #fff;
-        }
-        
-        .buttons-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 20px;
+        .buttons-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
         }
         
         .button {
             background: #3498db;
             color: white;
             border: none;
-            padding: 12px;
-            border-radius: 8px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             cursor: pointer;
             font-weight: bold;
+            font-size: 18px;
             transition: all 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #2980b9;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            position: relative;
         }
         
         .button:hover {
             background: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
         }
         
         .button:active {
-            transform: translateY(0);
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
-        .button-icon {
-            font-size: 20px;
-            margin-bottom: 5px;
+        .button-label {
+            font-size: 10px;
+            margin-top: 5px;
+            color: #bdc3c7;
         }
         
         .age-display {
             color: #f1c40f;
             font-size: 14px;
-            margin-top: 10px;
+            margin-top: 15px;
             font-weight: bold;
-            text-shadow: 0 0 5px #f1c40f;
         }
         
-        .message-display {
-            background: rgba(0,0,0,0.3);
-            color: #0f0;
-            padding: 8px;
-            border-radius: 5px;
-            font-size: 14px;
-            margin-top: 10px;
-            min-height: 20px;
-            border: 1px solid #0f0;
-            text-shadow: 0 0 3px #0f0;
+        /* 像素风格 */
+        .pixel-art {
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
         }
         
         /* 动画效果 */
-        @keyframes bounce {
-            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
-            50% { transform: translate(-50%, -50%) translateY(-10px); }
-        }
-        
-        @keyframes spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        @keyframes blink {
+            0%, 45%, 55%, 100% { opacity: 1; }
+            47.5%, 52.5% { opacity: 0.3; }
         }
         
         @keyframes pulse {
-            0%, 100% { opacity: 1; text-shadow: 0 0 10px #0f0; }
-            50% { opacity: 0.7; text-shadow: 0 0 5px #0f0; }
+            0%, 100% { text-shadow: 0 0 5px #2ecc71; }
+            50% { text-shadow: 0 0 15px #2ecc71, 0 0 20px #2ecc71; }
         }
         
-        .happy {
-            animation: bounce 0.5s ease;
+        .blinking {
+            animation: blink 3s infinite;
         }
         
-        .excited {
-            animation: spin 1s ease-in-out;
-        }
-        
-        .sleeping {
+        .pulsing {
             animation: pulse 2s infinite;
-        }
-        
-        /* 拓麻歌子经典像素字符 */
-        .tamagotchi-pixel {
-            font-family: 'Courier New', monospace;
-            font-size: 120px;
-            line-height: 1;
-            letter-spacing: -5px;
-            color: #0f0;
-            text-shadow: 0 0 10px #0f0;
         }
         
         /* 响应式设计 */
         @media (max-width: 480px) {
-            .tamagotchi-container {
+            .tamagotchi-device {
                 padding: 20px;
             }
             
             .screen-container {
-                width: 180px;
-                height: 180px;
+                height: 200px;
+                padding: 15px;
             }
             
-            .tamagotchi-pixel {
-                font-size: 100px;
-                letter-spacing: -4px;
+            .pet-display {
+                font-size: 50px;
             }
             
             .button {
-                padding: 10px;
-                font-size: 12px;
+                width: 50px;
+                height: 50px;
+                font-size: 16px;
             }
         }
         
-        /* 设备按钮样式 */
-        .device-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 10px;
-        }
-        
-        .device-button {
-            width: 30px;
-            height: 30px;
-            background: #e74c3c;
-            border-radius: 50%;
-            border: 2px solid #c0392b;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .device-button:hover {
-            background: #c0392b;
-            transform: scale(1.1);
+        /* 经典拓麻歌子像素字符 */
+        .classic-pet {
+            font-family: 'Courier New', monospace;
+            font-size: 40px;
+            line-height: 1;
+            letter-spacing: -2px;
         }
     </style>
 </head>
 <body>
-    <div class="tamagotchi-container">
-        <h2 style="color: #0f0; margin-bottom: 20px; text-shadow: 0 0 10px #0f0;">🥚 拓麻歌子 Uni</h2>
+    <div class="tamagotchi-device">
+        <div class="device-header">TAMAGOTCHI UNI</div>
         
-        <div class="tamagotchi-device">
-            <div class="screen-container">
-                <div class="pet-display" id="petDisplay">
-                    <div class="tamagotchi-pixel" id="pixelPet">●</div>
+        <div class="screen-container">
+            <div class="screen-content" id="screenContent">
+                <div class="pet-display" id="petDisplay">🥚</div>
+                <div id="messageDisplay">按A开始游戏</div>
+                <div class="stats-bar">
+                    <div class="stat-item">❤️<span id="hungerValue">100</span></div>
+                    <div class="stat-item">😊<span id="happinessValue">100</span></div>
+                    <div class="stat-item">😴<span id="tirednessValue">0</span></div>
                 </div>
-            </div>
-            
-            <div class="message-display" id="messageDisplay">欢迎来到拓麻歌子世界！</div>
-            
-            <div class="age-display" id="ageDisplay">年龄: 0 天</div>
-            
-            <div class="stats-container">
-                <div class="stat-item">
-                    ❤️ 饥饿
-                    <div class="stat-value" id="hungerValue">100%</div>
-                </div>
-                <div class="stat-item">
-                    😊 快乐
-                    <div class="stat-value" id="happinessValue">100%</div>
-                </div>
-                <div class="stat-item">
-                    💤 疲劳
-                    <div class="stat-value" id="tirednessValue">0%</div>
-                </div>
-                <div class="stat-item">
-                    🧼 清洁
-                    <div class="stat-value" id="cleanlinessValue">100%</div>
-                </div>
-            </div>
-            
-            <!-- 模拟设备按钮 -->
-            <div class="device-buttons">
-                <div class="device-button" onclick="checkStatus()" title="A按钮"></div>
-                <div class="device-button" onclick="feedPet()" title="B按钮"></div>
-                <div class="device-button" onclick="playWithPet()" title="C按钮"></div>
             </div>
         </div>
         
-        <div class="buttons-container">
-            <button class="button" onclick="feedPet()">
-                <div class="button-icon">🍽️</div>
-                喂食
-            </button>
-            <button class="button" onclick="playWithPet()">
-                <div class="button-icon">🎮</div>
-                玩耍
-            </button>
-            <button class="button" onclick="cleanPet()">
-                <div class="button-icon">🚿</div>
-                清洁
-            </button>
-            <button class="button" onclick="putToSleep()">
-                <div class="button-icon">😴</div>
-                睡觉
-            </button>
-            <button class="button" onclick="giveMedicine()">
-                <div class="button-icon">💊</div>
-                药品
-            </button>
-            <button class="button" onclick="checkStatus()">
-                <div class="button-icon">📊</div>
-                状态
-            </button>
+        <div class="age-display" id="ageDisplay">AGE: 0</div>
+        
+        <div class="buttons-row">
+            <div>
+                <button class="button" onclick="buttonA()">A</button>
+                <div class="button-label">喂食</div>
+            </div>
+            <div>
+                <button class="button" onclick="buttonB()">B</button>
+                <div class="button-label">玩耍</div>
+            </div>
+            <div>
+                <button class="button" onclick="buttonC()">C</button>
+                <div class="button-label">状态</div>
+            </div>
         </div>
     </div>
 
@@ -317,232 +236,230 @@
             hunger: 100,
             happiness: 100,
             tiredness: 0,
-            cleanliness: 100,
             age: 0,
             isSleeping: false,
             isSick: false,
-            lastFed: Date.now(),
-            lastPlayed: Date.now(),
-            lastCleaned: Date.now()
+            gameStarted: false,
+            lastAction: Date.now()
         };
         
-        const pixelPet = document.getElementById('pixelPet');
+        const petDisplay = document.getElementById('petDisplay');
         const messageDisplay = document.getElementById('messageDisplay');
-        const ageDisplay = document.getElementById('ageDisplay');
+        const screenContent = document.getElementById('screenContent');
         
-        // 拓麻歌子经典像素字符映射（使用Unicode块字符）
-        const tamagotchiChars = {
-            egg: '●',           // 实心圆 - 蛋
-            baby: '☻',          // 微笑脸 - 婴儿
-            child: '☺',         // 笑脸 - 幼年
-            teen: '😐',         // 无表情 - 青少年
-            adult: '😊',        // 开心脸 - 成年
-            sick: '🤒',         // 生病
-            sleeping: '😴',     // 睡觉
-            happy: '😄',        // 非常开心
-            sad: '😢',          // 伤心
-            dead: '💀'          // 死亡
+        // 经典拓麻歌子像素字符映射
+        const classicPets = {
+            egg: '🥚',
+            baby: '🐣',
+            child: '🐥',
+            teen: '🐔',
+            adult: '🐓',
+            sick: '🤒',
+            sleeping: '😴',
+            happy: '😊',
+            sad: '😢'
         };
         
-        // 更新显示
-        function updateDisplay() {
-            // 更新数值显示
-            document.getElementById('hungerValue').textContent = Math.round(pet.hunger) + '%';
-            document.getElementById('happinessValue').textContent = Math.round(pet.happiness) + '%';
-            document.getElementById('tirednessValue').textContent = Math.round(pet.tiredness) + '%';
-            document.getElementById('cleanlinessValue').textContent = Math.round(pet.cleanliness) + '%';
-            document.getElementById('ageDisplay').textContent = `年龄: ${pet.age} 天`;
-            
-            // 更新宠物表情
-            let char = tamagotchiChars.adult;
-            if (pet.age === 0) char = tamagotchiChars.egg;
-            else if (pet.age <= 2) char = tamagotchiChars.baby;
-            else if (pet.age <= 5) char = tamagotchiChars.child;
-            else if (pet.age <= 10) char = tamagotchiChars.teen;
-            
-            if (pet.isSick) char = tamagotchiChars.sick;
-            else if (pet.isSleeping) char = tamagotchiChars.sleeping;
-            else if (pet.happiness > 80) char = tamagotchiChars.happy;
-            else if (pet.happiness < 30) char = tamagotchiChars.sad;
-            
-            pixelPet.textContent = char;
-            pixelPet.className = 'tamagotchi-pixel';
-            
-            // 添加动画效果
-            if (pet.happiness > 80 && !pet.isSleeping && !pet.isSick) {
-                pixelPet.classList.add('happy');
-            } else if (pet.isSleeping) {
-                pixelPet.classList.add('sleeping');
+        // 初始化显示
+        function initDisplay() {
+            updateStats();
+            if (!pet.gameStarted) {
+                messageDisplay.textContent = '按A开始游戏';
+                petDisplay.textContent = '🥚';
             }
+        }
+        
+        // 更新统计显示
+        function updateStats() {
+            document.getElementById('hungerValue').textContent = Math.round(pet.hunger);
+            document.getElementById('happinessValue').textContent = Math.round(pet.happiness);
+            document.getElementById('tirednessValue').textContent = Math.round(pet.tiredness);
+            document.getElementById('ageDisplay').textContent = `AGE: ${pet.age}`;
+        }
+        
+        // 更新宠物显示
+        function updatePetDisplay() {
+            let emoji = classicPets.adult;
+            
+            if (!pet.gameStarted) {
+                emoji = classicPets.egg;
+            } else if (pet.age === 0) {
+                emoji = classicPets.baby;
+            } else if (pet.age <= 2) {
+                emoji = classicPets.child;
+            } else if (pet.age <= 5) {
+                emoji = classicPets.teen;
+            }
+            
+            if (pet.isSick) {
+                emoji = classicPets.sick;
+            } else if (pet.isSleeping) {
+                emoji = classicPets.sleeping;
+            } else if (pet.happiness > 80) {
+                emoji = classicPets.happy;
+            } else if (pet.happiness < 30) {
+                emoji = classicPets.sad;
+            }
+            
+            petDisplay.textContent = emoji;
+            petDisplay.className = 'pet-display blinking';
         }
         
         // 显示消息
         function showMessage(message) {
             messageDisplay.textContent = message;
+            messageDisplay.className = 'pulsing';
             setTimeout(() => {
-                if (messageDisplay.textContent === message) {
-                    messageDisplay.textContent = '';
-                }
-            }, 3000);
+                messageDisplay.className = '';
+            }, 2000);
         }
         
-        // 喂食
-        function feedPet() {
+        // 按钮A - 喂食/开始游戏
+        function buttonA() {
+            if (!pet.gameStarted) {
+                startGame();
+                return;
+            }
+            
             if (pet.isSleeping) {
-                showMessage('😴 它在睡觉呢！');
+                showMessage('Zzz...');
                 return;
             }
             
             if (pet.hunger >= 100) {
-                showMessage('🍗 已经吃饱啦！');
+                showMessage('FULL!');
                 return;
             }
             
             pet.hunger = Math.min(100, pet.hunger + 25);
             pet.happiness = Math.min(100, pet.happiness + 10);
-            pet.cleanliness = Math.max(0, pet.cleanliness - 10);
-            pet.lastFed = Date.now();
-            
-            showMessage('🍽️ 吃得好开心！');
-            updateDisplay();
+            pet.lastAction = Date.now();
+            showMessage('YUM!');
+            updateStats();
+            updatePetDisplay();
         }
         
-        // 玩耍
-        function playWithPet() {
+        // 按钮B - 玩耍
+        function buttonB() {
+            if (!pet.gameStarted) return;
+            
             if (pet.isSleeping) {
-                showMessage('😴 它在睡觉呢！');
+                showMessage('Zzz...');
                 return;
             }
             
             if (pet.happiness >= 100) {
-                showMessage('🎉 已经很开心啦！');
+                showMessage('HAPPY!');
                 return;
             }
             
             pet.happiness = Math.min(100, pet.happiness + 20);
             pet.hunger = Math.max(0, pet.hunger - 15);
             pet.tiredness = Math.min(100, pet.tiredness + 15);
-            pet.lastPlayed = Date.now();
-            
-            showMessage('🎮 玩得好开心！');
-            updateDisplay();
+            pet.lastAction = Date.now();
+            showMessage('PLAY!');
+            updateStats();
+            updatePetDisplay();
         }
         
-        // 清洁
-        function cleanPet() {
-            if (pet.isSleeping) {
-                showMessage('😴 它在睡觉呢！');
+        // 按钮C - 状态/清洁/药品
+        function buttonC() {
+            if (!pet.gameStarted) return;
+            
+            if (pet.isSick) {
+                // 给药
+                pet.isSick = false;
+                pet.happiness = Math.min(100, pet.happiness + 10);
+                showMessage('CURED!');
+                updateStats();
+                updatePetDisplay();
                 return;
             }
             
-            if (pet.cleanliness >= 100) {
-                showMessage('✨ 已经很干净啦！');
+            if (pet.tiredness > 70) {
+                // 睡觉
+                pet.isSleeping = true;
+                showMessage('SLEEP...');
+                updatePetDisplay();
+                
+                setTimeout(() => {
+                    pet.isSleeping = false;
+                    pet.tiredness = Math.max(0, pet.tiredness - 50);
+                    pet.hunger = Math.max(0, pet.hunger - 20);
+                    showMessage('WAKE!');
+                    updateStats();
+                    updatePetDisplay();
+                }, 5000);
                 return;
             }
             
-            pet.cleanliness = Math.min(100, pet.cleanliness + 30);
-            pet.happiness = Math.max(0, pet.happiness - 5);
-            pet.lastCleaned = Date.now();
-            
-            showMessage('🚿 变得干干净净！');
-            updateDisplay();
-        }
-        
-        // 睡觉
-        function putToSleep() {
-            if (pet.tiredness <= 20) {
-                showMessage('😴 还不困呢！');
-                return;
-            }
-            
-            pet.isSleeping = true;
-            showMessage('💤 开始睡觉了...');
-            updateDisplay();
-            
-            // 模拟睡眠时间
-            setTimeout(() => {
-                pet.isSleeping = false;
-                pet.tiredness = Math.max(0, pet.tiredness - 50);
-                pet.hunger = Math.max(0, pet.hunger - 20);
-                showMessage('🌞 醒来啦！');
-                updateDisplay();
-            }, 5000); // 5秒模拟睡眠
-        }
-        
-        // 给药
-        function giveMedicine() {
-            if (!pet.isSick) {
-                showMessage('💊 没有生病，不需要吃药！');
-                return;
-            }
-            
-            pet.isSick = false;
-            pet.happiness = Math.min(100, pet.happiness + 10);
-            showMessage('🏥 病好啦！');
-            updateDisplay();
-        }
-        
-        // 检查状态
-        function checkStatus() {
+            // 显示状态
             let status = '';
-            if (pet.hunger < 30) status += '⚠️ 饿了 ';
-            if (pet.happiness < 30) status += '😢 不开心 ';
-            if (pet.tiredness > 70) status += '😴 很累 ';
-            if (pet.cleanliness < 30) status += '💩 脏了 ';
-            if (pet.isSick) status += '🤒 生病了 ';
+            if (pet.hunger < 30) status += 'HUNGRY ';
+            if (pet.happiness < 30) status += 'SAD ';
+            if (pet.tiredness > 70) status += 'TIRED ';
             
             if (status === '') {
-                showMessage('✅ 一切正常！');
+                showMessage('OK!');
             } else {
-                showMessage(status);
+                showMessage(status.trim());
             }
+        }
+        
+        // 开始游戏
+        function startGame() {
+            pet.gameStarted = true;
+            pet.age = 0;
+            showMessage('HI!');
+            updateStats();
+            updatePetDisplay();
         }
         
         // 自然衰减和成长
         setInterval(() => {
-            if (pet.isSleeping) return;
+            if (!pet.gameStarted || pet.isSleeping) return;
             
             // 自然衰减
             pet.hunger = Math.max(0, pet.hunger - 0.5);
             pet.happiness = Math.max(0, pet.happiness - 0.3);
             pet.tiredness = Math.min(100, pet.tiredness + 0.4);
-            pet.cleanliness = Math.max(0, pet.cleanliness - 0.2);
             
             // 随机生病
             if (!pet.isSick && Math.random() < 0.001) {
                 pet.isSick = true;
-                showMessage('🤒 生病了！快给它吃药！');
+                showMessage('SICK!');
+                updatePetDisplay();
             }
             
             // 年龄增长（每30秒增加1天）
-            if (Date.now() - pet.lastFed > 30000) {
+            if (Date.now() - pet.lastAction > 30000) {
                 pet.age++;
-                pet.lastFed = Date.now();
-                showMessage(`🎂 宠物长大啦！现在${pet.age}天了`);
+                pet.lastAction = Date.now();
+                showMessage(`AGE ${pet.age}!`);
+                updateStats();
+                updatePetDisplay();
             }
             
-            updateDisplay();
+            updateStats();
+            updatePetDisplay();
             
             // 检查死亡条件
             if (pet.hunger <= 0 || pet.happiness <= 0) {
-                pixelPet.textContent = tamagotchiChars.dead;
-                showMessage('💔 宠物去世了... 刷新页面重新开始吧');
-                clearInterval(this);
+                petDisplay.textContent = '💀';
+                showMessage('RIP...');
+                pet.gameStarted = false;
             }
         }, 2000);
         
-        // 初始化
-        updateDisplay();
-        
-        // 键盘快捷键支持
+        // 键盘支持
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'f' || e.key === 'F') feedPet();
-            if (e.key === 'p' || e.key === 'P') playWithPet();
-            if (e.key === 'c' || e.key === 'C') cleanPet();
-            if (e.key === 's' || e.key === 'S') putToSleep();
-            if (e.key === 'm' || e.key === 'M') giveMedicine();
-            if (e.key === 'i' || e.key === 'I') checkStatus();
+            if (e.key === 'a' || e.key === 'A') buttonA();
+            if (e.key === 'b' || e.key === 'B') buttonB();
+            if (e.key === 'c' || e.key === 'C') buttonC();
         });
+        
+        // 初始化
+        initDisplay();
     </script>
 </body>
 </html>
